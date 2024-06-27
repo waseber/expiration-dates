@@ -1,9 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import NavTop from "@/components/NavTop.vue";
+</script>
 
 <template>
   <v-responsive class="border rounded" max-height="300">
     <v-app>
-      <v-app-bar title="App bar"></v-app-bar>
+      <nav-top />
 
       <v-navigation-drawer>
         <v-list>
