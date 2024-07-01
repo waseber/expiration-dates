@@ -1,11 +1,10 @@
-<template>
-  <v-app>
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
-</template>
-
 <script setup>
-  //
+import DefaultLayout from "@/layouts/DefaultLayout.vue";
+//
 </script>
+
+<template>
+  <default-layout>
+    <router-view />
+  </default-layout>
+</template>
