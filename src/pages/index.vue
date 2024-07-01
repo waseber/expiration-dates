@@ -1,7 +1,8 @@
 <script setup>
+import ItemsList from "@/components/ItemsList.vue";
 //
 </script>
 
 <template>
-  <div>hi</div>
+  <items-list />
 </template>
