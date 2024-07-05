@@ -1,25 +1,12 @@
 <script setup>
 import { ref } from "vue";
+import { storeToRefs } from "pinia";
+// common config
+import useCommonConfig from "@/composables/useCommonConfig";
 
-const listData = ref([
-  {
-    location: "fridge",
-    items: [{ item: "milk", expirationDate: "06/26/2024" }],
-  },
-  {
-    location: "freezer",
-    items: [{ item: "chicken", expirationDate: "04/26/2024" }],
-  },
-  {
-    location: "pantry",
-    items: [
-      {
-        item: "ketchup",
-        expirationDate: "04/26/2025",
-      },
-    ],
-  },
-]);
+const { appStore } = useCommonConfig();
+
+const { listData } = storeToRefs(appStore);
 
 const formatDate = (date) => {
   return new Date(date).toLocaleDateString();
