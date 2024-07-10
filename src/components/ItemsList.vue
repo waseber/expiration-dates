@@ -34,7 +34,7 @@ const colorFormat = (date) => {
     <template v-for="(item, iIdx) in g?.items" :key="iIdx">
       <v-list :bg-color="colorFormat(item.expirationDate)">
         <v-list-item-title class="d-flex text-capitalize"
-          >{{ item.item }} <v-spacer /><span
+          >{{ item.food }} <v-spacer /><span
             v-html="formatDate(item.expirationDate)"
           ></span
         ></v-list-item-title>

@@ -8,17 +8,17 @@ export const useAppStore = defineStore("app", {
     listData: [
       {
         location: "fridge",
-        items: [{ item: "milk", expirationDate: "06/26/2024" }],
+        items: [{ food: "milk", expirationDate: "06/26/2024" }],
       },
       {
         location: "freezer",
-        items: [{ item: "chicken", expirationDate: "04/26/2024" }],
+        items: [{ food: "chicken", expirationDate: "04/26/2024" }],
       },
       {
         location: "pantry",
         items: [
           {
-            item: "ketchup",
+            food: "ketchup",
             expirationDate: "04/26/2025",
           },
         ],
