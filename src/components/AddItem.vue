@@ -1,14 +1,31 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { storeToRefs } from "pinia";
 // common config
 import useCommonConfig from "@/composables/useCommonConfig";
 
 const { appStore } = useCommonConfig();
 
-const { showAdd } = storeToRefs(appStore);
+const { showAdd, listData } = storeToRefs(appStore);
 
-const formData = ref({ item: "", location: "" });
+const formData = ref({ food: null, location: null, expirationDate: null });
+
+const canSubmit = computed(() => {
+  return (
+    formData.value.food &&
+    formData.value.location &&
+    formData.value.expirationDate
+  );
+});
+const submitHandler = () => {
+  console.log("submit handler");
+  listData.value
+    .find((x) => x.location === formData.value.location.toLowerCase())
+    .items.push(formData.value);
+  // listData.value.push(formData.value);
+  // reset
+  // formData.value = { food: null, location: null, expirationDate: null };
+};
 </script>
 
 <template>
@@ -16,7 +33,7 @@ const formData = ref({ item: "", location: "" });
     <!--<template v-slot:activator="{ props }">
       <v-btn v-bind="props" text="Add Item"></v-btn>
     </template>-->
-
+    {{ formData }}
     <v-card>
       <v-card-title>Add Item</v-card-title>
       <v-card-text>
@@ -41,7 +58,11 @@ const formData = ref({ item: "", location: "" });
             label="Expiration Date"
             max-width="368"
             variant="outlined"
+            class="mb-4"
           ></v-date-input>
+          <v-btn :disabled="!canSubmit" color="blue" @click="submitHandler"
+            >Submit</v-btn
+          >
         </v-form>
       </v-card-text>
     </v-card>
