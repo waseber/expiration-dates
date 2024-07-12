@@ -1,12 +1,6 @@
 // Utilities
 import { defineStore } from "pinia";
-
-export const useAppStore = defineStore("app", {
-  state: () => ({
-    //
-    showAdd: false,
-    listData: [
-      {
+/*{
         location: "fridge",
         items: [{ food: "milk", expirationDate: "06/26/2024" }],
       },
@@ -22,8 +16,12 @@ export const useAppStore = defineStore("app", {
             expirationDate: "04/26/2025",
           },
         ],
-      },
-    ],
+      },*/
+export const useAppStore = defineStore("app", {
+  state: () => ({
+    //
+    showAdd: false,
+    listData: {},
   }),
   action: {
     //

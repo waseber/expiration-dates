@@ -18,6 +18,7 @@ const { showAdd } = storeToRefs(appStore);
       class="me-4"
       icon="mdi-plus"
       location="top end"
+      color="blue"
       absolute
       offset
       @click="showAdd = !showAdd"

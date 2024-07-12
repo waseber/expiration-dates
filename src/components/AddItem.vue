@@ -19,9 +19,19 @@ const canSubmit = computed(() => {
 });
 const submitHandler = () => {
   console.log("submit handler");
-  listData.value
-    .find((x) => x.location === formData.value.location.toLowerCase())
-    .items.push(formData.value);
+  console.log("formData ", formData.value);
+
+  if (!listData.value[formData.value.location]) {
+    listData.value[formData.value.location] = {
+      items: [],
+    };
+  }
+
+  console.log(
+    "listData.value[formData.value.location] ",
+    listData.value[formData.value.location]
+  );
+  listData.value[formData.value.location].items.push(formData.value);
   // listData.value.push(formData.value);
   // reset
   // formData.value = { food: null, location: null, expirationDate: null };
@@ -37,7 +47,7 @@ const submitHandler = () => {
     <v-card>
       <v-card-title>Add Item</v-card-title>
       <v-card-text>
-        <v-form>
+        <v-form @submit="submitHandler">
           <v-text-field
             v-model="formData.food"
             variant="outlined"
@@ -60,7 +70,7 @@ const submitHandler = () => {
             variant="outlined"
             class="mb-4"
           ></v-date-input>
-          <v-btn :disabled="!canSubmit" color="blue" @click="submitHandler"
+          <v-btn type="submit" :disabled="!canSubmit" color="blue"
             >Submit</v-btn
           >
         </v-form>
