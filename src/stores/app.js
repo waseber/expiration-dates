@@ -22,6 +22,7 @@ export const useAppStore = defineStore("app", {
     //
     showAdd: false,
     listData: {},
+    currentItem: false,
   }),
   action: {
     //

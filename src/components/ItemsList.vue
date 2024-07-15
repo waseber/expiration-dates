@@ -6,7 +6,7 @@ import useCommonConfig from "@/composables/useCommonConfig";
 
 const { appStore } = useCommonConfig();
 
-const { listData } = storeToRefs(appStore);
+const { showAdd, listData, currentItem } = storeToRefs(appStore);
 
 const formatDate = (date) => {
   return new Date(date).toLocaleDateString();
@@ -26,19 +26,29 @@ const colorFormat = (date) => {
 
   return null;
 };
+
+const editHandler = (location, item) => {
+  showAdd.value = true;
+  console.log("location ", location);
+  currentItem.value = { location: location, item: item };
+};
 </script>
 
 <template>
   <div v-if="Object.keys(listData).length > 0">
-    <div v-for="(g, gIdx) in listData" :key="gIdx">
-      <h2 class="px-4 text-h5 text-capitalize">{{ g.location }}</h2>
+    <div v-for="(g, key) in listData" :key="key">
+      <h2 class="mt-4 px-4 text-h5 text-capitalize">{{ key }}</h2>
       <template v-for="(item, iIdx) in g?.items" :key="iIdx">
         <v-list :bg-color="colorFormat(item.expirationDate)">
-          <v-list-item-title class="px-4 d-flex text-capitalize"
-            >{{ item.food }} <v-spacer /><span
-              v-html="formatDate(item.expirationDate)"
-            ></span
-          ></v-list-item-title>
+          <v-list-item-title class="px-4 d-flex align-center text-capitalize"
+            >{{ item.food }} <v-spacer />
+            <span v-html="formatDate(item.expirationDate)" class="mr-2"></span>
+            <v-btn
+              icon="mdi-pencil"
+              color="blue"
+              @click="editHandler(key, item)"
+            ></v-btn>
+          </v-list-item-title>
         </v-list>
       </template>
     </div>
@@ -46,5 +56,4 @@ const colorFormat = (date) => {
   <div v-else class="d-flex w-100 h-75 justify-center align-center">
     Nothing here, yet. You can add something.
   </div>
-  {{ listData }} |
 </template>
